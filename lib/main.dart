@@ -24,7 +24,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           title: Text('Groww'),
         ),
         body: Container(
-          height: 100,
+          height: 500,
           width: 411,
           color: Colors.grey[400],
         ),
