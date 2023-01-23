@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groww/views/pages/initialScreen.dart';
 
 void main(List<String> args) {
   runApp(MainHomeScreen());
@@ -18,16 +19,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          shadowColor: Colors.greenAccent,
-          title: Text('Groww'),
-        ),
-        body: Container(
-          height: 500,
-          width: 411,
-          color: Colors.grey[400],
-        ),
+        body: initialScreen(),
       ),
     );
   }
