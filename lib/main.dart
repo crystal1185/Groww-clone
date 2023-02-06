@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:groww/views/pages/initialScreen.dart';
+import 'package:groww/views/pages/CustomAuth.dart';
 
-void main(List<String> args) {
+import 'package:groww/views/pages/initialScreen.dart';
+import 'package:groww/views/pages/OnBoardingScreen.dart';
+import 'package:groww/views/pages/test.dart';
+
+import 'package:provider/provider.dart';
+
+main(List<String> args) {
   runApp(MainHomeScreen());
 }
 
@@ -17,6 +23,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Groww',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+      ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: initialScreen(),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:groww/views/pages/stockspage.dart';
+import 'package:provider/provider.dart';
 
 class SignInWithGoogle extends StatefulWidget {
   const SignInWithGoogle({super.key});
@@ -12,7 +14,10 @@ class _SignInWithGoogleState extends State<SignInWithGoogle> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (() {}),
+      onTap: (() {
+        // Navigator.push(
+        //     context, MaterialPageRoute(builder: (context) => StocksUI()));
+      }),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         child: SizedBox(
@@ -27,7 +32,7 @@ class _SignInWithGoogleState extends State<SignInWithGoogle> {
                 child: Image.network(
                     "https://cdn-icons-png.flaticon.com/512/281/281764.png"),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 12,
               ),
               Text("Continue with Google",
