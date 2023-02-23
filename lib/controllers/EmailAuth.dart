@@ -1,31 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ///widgets for Textform field
 
 class TextFormFieldCreator extends StatelessWidget {
-  String CustomlabelText;
+  String Customlabel;
   String CustomhintText;
+  TextEditingController controller;
+  TextInputType CustomKeyboard;
   TextFormFieldCreator(
-      {super.key, required this.CustomlabelText, required this.CustomhintText});
+      {super.key,
+      required this.Customlabel,
+      required this.CustomhintText,
+      required this.CustomKeyboard,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 10, right: 10),
       child: TextFormField(
+        controller: controller,
+        keyboardType: CustomKeyboard,
         decoration: InputDecoration(
-          labelText: CustomlabelText,
-          hintText: CustomhintText,
-        ),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            // border: UnderlineInputBorder(),
+            hintText: CustomhintText,
+            label: Text(
+              Customlabel,
+              style: TextStyle(color: Colors.grey[500]),
+            )),
       ),
     );
   }
 }
 
+/// Widgets for PasswordForm Field.
 class PasswordFormFieldCreator extends StatelessWidget {
   String CustomPasswordLabel;
   String CustomHintext;
-
   PasswordFormFieldCreator(
       {required this.CustomPasswordLabel, required this.CustomHintext});
   @override
@@ -34,7 +47,8 @@ class PasswordFormFieldCreator extends StatelessWidget {
       padding: EdgeInsets.only(left: 10, right: 10),
       child: TextFormField(
         decoration: InputDecoration(
-          labelText: CustomPasswordLabel,
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          label: Text(CustomPasswordLabel),
           hintText: CustomHintext,
           suffixIcon: Icon(Icons.remove_red_eye),
         ),
@@ -45,6 +59,33 @@ class PasswordFormFieldCreator extends StatelessWidget {
   }
 }
 
+/// Widget for the OTP :
+class OtpFormFieldCreator extends StatelessWidget {
+  String? Customlabel;
+  String? CustomhintText;
+
+  OtpFormFieldCreator({super.key, this.Customlabel, this.CustomhintText});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 10, right: 10),
+      child: TextFormField(
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            // border: UnderlineInputBorder(),
+            hintText: CustomhintText,
+            label: Text(
+              Customlabel!,
+              style: TextStyle(color: Colors.grey[500]),
+            )),
+      ),
+    );
+  }
+}
+
+/// custom button
 class CustomButton extends StatelessWidget {
   String? CustomText;
   Function()? onTap;
@@ -72,6 +113,42 @@ class CustomButton extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     fontSize: 16),
               )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Custombtn extends StatelessWidget {
+  String buttonName;
+  Function onPressed;
+  Custombtn({super.key, required this.buttonName, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.greenAccent,
+      margin: EdgeInsets.only(bottom: 15),
+      child: ElevatedButton(
+        onPressed: () async {
+          onPressed;
+        },
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.06,
+          width: MediaQuery.of(context).size.width * 0.88,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                buttonName,
+                style: GoogleFonts.roboto(
+                  fontSize: 16,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ],
           ),
         ),

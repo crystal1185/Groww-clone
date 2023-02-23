@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:groww/views/pages/stockspage.dart';
 import 'package:provider/provider.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class SignInWithGoogle extends StatefulWidget {
   const SignInWithGoogle({super.key});
@@ -10,13 +13,49 @@ class SignInWithGoogle extends StatefulWidget {
   State<SignInWithGoogle> createState() => _SignInWithGoogleState();
 }
 
+// String? SERVER_IP = "http://192.168.29.129:3000";
+
 class _SignInWithGoogleState extends State<SignInWithGoogle> {
+  Future<String?> googleOAuthSignin() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+
+    final GoogleSignInAccount? googleSignInAccount =
+        await googleSignIn.signIn();
+    String? accessToken;
+    String? idToken;
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount.authentication;
+      print(googleSignInAuthentication.accessToken);
+      print(googleSignInAuthentication.idToken);
+      accessToken = googleSignInAuthentication.accessToken;
+      idToken = googleSignInAuthentication.idToken;
+      print(accessToken.runtimeType);
+    }
+    print(accessToken);
+    print(idToken);
+    var res = await http.post(Uri.parse("http://192.168.1.24:3000/createUser"),
+        body: jsonEncode({"access_token": accessToken, "id_token": idToken}),
+        headers: {
+          "accept": "application/json",
+          "content-type": "application/json"
+        });
+    print(res.body);
+    if (res.statusCode == 200) {}
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (() {
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => StocksUI()));
+      onTap: (() async {
+        String? jsonValue = await googleOAuthSignin();
+        print(jsonValue);
+
+        /// Deserialize
+        /// Life cycle destroy.
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => StocksUI()));
       }),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),

@@ -26,6 +26,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.06,
           ),
+
           PasswordFormFieldCreator(
               CustomPasswordLabel: "New Password",
               CustomHintext: "8-32 characters"),

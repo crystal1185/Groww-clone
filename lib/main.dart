@@ -1,13 +1,24 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:groww/test.dart';
 import 'package:groww/views/pages/CustomAuth.dart';
+import 'package:groww/views/pages/DashBoard/MainScreenDashboard.dart';
+import 'package:groww/views/pages/SettingsPage/ThemeSelect.dart';
 
 import 'package:groww/views/pages/initialScreen.dart';
-import 'package:groww/views/pages/OnBoardingScreen.dart';
-import 'package:groww/views/pages/test.dart';
 
 import 'package:provider/provider.dart';
+import 'package:groww/styles/colors.dart';
+import 'package:groww/styles/theme.dart';
+import 'Demo.dart';
+import 'DemoModal.dart';
+import 'package:groww/provider/ThemeProvider.dart';
 
-main(List<String> args) {
+import 'navigations/tabbar.dart';
+
+void main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MainHomeScreen());
 }
 
@@ -22,14 +33,29 @@ class MainHomeScreen extends StatefulWidget {
 class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Groww',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: initialScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => DemoModal(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TestModal(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Groww',
+        // theme: ThemeData(
+        //   primarySwatch: Palette.kToDark,
+        // )
+        // ,
+        theme: AppTheme().lightTheme,
+        //theme: AppTheme().lightTheme,
+        darkTheme: AppTheme().darktheme,
+
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: tabbar(),
+        ),
       ),
     );
   }
