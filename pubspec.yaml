@@ -51,6 +51,7 @@ dependencies:
   google_sign_in: ^5.4.4
   firebase_auth: ^4.2.5
   firebase_core: ^2.4.1
+  syncfusion_flutter_charts: ^20.4.51
     
          
 
@@ -79,7 +80,13 @@ flutter_icons:
   image_path: assets/splashScreen.png
 
   
- 
+android_12:
+  image: assets/splashScreen.png
+  color: "f9f9f9"
+  image_dark: assets/splashScreen.png
+  color_dark: "#000000"
+   
+
    
 
 # For information on the generic Dart part of this file, see the

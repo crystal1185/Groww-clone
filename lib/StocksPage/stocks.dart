@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:groww/StocksPage/StocksInNews.dart';
+import 'package:groww/StocksPage/TopLosers.dart';
 
 import '../ReusableWidgets/BalanceCard.dart';
 import '../ReusableWidgets/Searchbar.dart';
 import '../ReusableWidgets/StockDisplayWidget.dart';
 import '../ReusableWidgets/StockExchangeWidget.dart';
 import 'MostBought.dart';
+import 'TopGainers.dart';
 
 class StocksPageView extends StatefulWidget {
-  const StocksPageView({super.key});
-
+  StocksPageView({super.key});
+  final ScrollController s = ScrollController();
   @override
   State<StocksPageView> createState() => _StocksPageViewState();
 }
@@ -160,22 +164,96 @@ class _StocksPageViewState extends State<StocksPageView> {
             delegate: SliverChildBuilderDelegate(
               childCount: 1,
               (context, index) {
-                return Column(
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    // Container for Balance Available for stocks.
-                    BalanceCard(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    MostBoughtWidget(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text("Product & tools"),
-                  ],
+                return Container(
+                  // color: Colors.amber,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      // Container for Balance Available for stocks.
+                      BalanceCard(),
+                      SizedBox(
+                        height: 10,
+                      ),
+
+                      /// this widget displays the most bought stocks data on the Stocks page.
+                      MostBoughtWidget(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.002,
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: MediaQuery.of(context).size.width * 0.05),
+                            child: Text(
+                              "Gainers",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.05,
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.05,
+                            top: MediaQuery.of(context).size.height * 0.01),
+                        child: GainersWidget(),
+                      ),
+
+                      /// losers
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: MediaQuery.of(context).size.width * 0.05),
+                            child: Text(
+                              "Losers",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.05,
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.05,
+                            top: MediaQuery.of(context).size.height * 0.01),
+                        child: LosersWidget(),
+                      ),
+
+                      /// stocks in news
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: MediaQuery.of(context).size.width * 0.05),
+                            child: Text(
+                              "Stocks In News",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.05,
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.05,
+                            top: MediaQuery.of(context).size.height * 0.01),
+                        child: StocksInNews(),
+                      ),
+                    ],
+                  ),
                 );
               },
             ),

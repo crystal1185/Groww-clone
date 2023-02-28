@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../ReusableWidgets/StockDisplayWidget.dart';
 import 'package:groww/models/StockCardModel.dart';
 /**
@@ -17,36 +16,30 @@ class MostBoughtWidget extends StatefulWidget {
 }
 
 class _MostBoughtWidgetState extends State<MostBoughtWidget> {
-  List<StockCardModel> StockDetails = [
-    StockCardModel(
+  List<StockDisplayCard> mostboughtcards = [
+    StockDisplayCard(
       BrandLogo: "assets/zomato.png",
       BrandName: "Zomato",
-      Cost: "55.05",
-      PriceAction: "+2.10(3.97%)",
+      Cost: "₹ 54.95",
+      PriceAction: "+2.00 (3.78%)",
     ),
-    StockCardModel(
+    StockDisplayCard(
       BrandLogo: "assets/Ambuja_logo.png",
       BrandName: "Ambuja Cements",
-      Cost: "336.00",
-      PriceAction: "+0.85(0.34%)",
+      Cost: "₹ 336.90",
+      PriceAction: "+2.00 (3.78%)",
     ),
-    StockCardModel(
-      BrandLogo: "assets/zomato.png",
-      BrandName: "Zomato",
-      Cost: "55.05",
-      PriceAction: "+2.10(3.97%)",
-    ),
-    StockCardModel(
+    StockDisplayCard(
       BrandLogo: "assets/Yes_Bank_logo.png",
       BrandName: "Yes Bank",
-      Cost: "16.35",
-      PriceAction: "+0.60(0.58%)",
+      Cost: "₹ 16.40",
+      PriceAction: "+2.00 (0.61%)",
     ),
-    StockCardModel(
-      BrandLogo: "assets/tatasteel.png",
+    StockDisplayCard(
+      BrandLogo: "assets/tatasteel.jpg",
       BrandName: "Tata Steel",
-      Cost: "111.75",
-      PriceAction: "+0.23(0.58%)",
+      Cost: "₹ 112.05",
+      PriceAction: "+0.90 (0.81%)",
     ),
   ];
   @override
@@ -81,33 +74,11 @@ class _MostBoughtWidgetState extends State<MostBoughtWidget> {
             crossAxisSpacing: 15,
             childAspectRatio: 2.6 / 2.6,
             children: [
-              StockDisplayCard(
-                BrandLogo: "assets/zomato.png",
-                BrandName: "Zomato",
-                Cost: "₹ 54.95",
-                PriceAction: "+2.00 (3.78%)",
-              ),
-              StockDisplayCard(
-                BrandLogo: "assets/Ambuja_logo.png",
-                BrandName: "Ambuja Cements",
-                Cost: "₹ 336.90",
-                PriceAction: "+2.00 (3.78%)",
-              ),
-              StockDisplayCard(
-                BrandLogo: "assets/Yes_Bank_logo.png",
-                BrandName: "Yes Bank",
-                Cost: "₹ 16.40",
-                PriceAction: "+2.00 (0.61%)",
-              ),
-              StockDisplayCard(
-                BrandLogo: "assets/tatasteel.jpg",
-                BrandName: "Tata Steel",
-                Cost: "₹ 112.05",
-                PriceAction: "+0.90 (0.81%)",
-              ),
+              /// to display the most bought
+              ...mostboughtcards.toList(growable: true),
             ],
           ),
-        )
+        ),
       ],
     );
   }

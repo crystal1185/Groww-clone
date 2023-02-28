@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+
 import '../ReusableWidgets/StockDisplayWidget.dart';
 
-class GainersWidget extends StatefulWidget {
-  const GainersWidget({super.key});
+class StocksInNews extends StatefulWidget {
+  const StocksInNews({super.key});
 
   @override
-  State<GainersWidget> createState() => _GainersWidgetState();
+  State<StocksInNews> createState() => _StocksInNewsState();
 }
 
-class _GainersWidgetState extends State<GainersWidget> {
-  List<StockDisplayCard> topgainers = [
+class _StocksInNewsState extends State<StocksInNews> {
+  List<StockDisplayCard> stocksInNews = [
     StockDisplayCard(
       BrandLogo: "assets/zomato.png",
       BrandName: "Zomato",
@@ -35,7 +36,6 @@ class _GainersWidgetState extends State<GainersWidget> {
       PriceAction: "+0.90 (0.81%)",
     ),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,9 +47,9 @@ class _GainersWidgetState extends State<GainersWidget> {
             width: 20,
           );
         },
-        itemCount: topgainers.length,
+        itemCount: stocksInNews.length,
         itemBuilder: (context, index) {
-          return topgainers[index];
+          return stocksInNews[index];
         },
         scrollDirection: Axis.horizontal,
       ),
