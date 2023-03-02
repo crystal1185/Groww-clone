@@ -8,6 +8,7 @@ import '../ReusableWidgets/Searchbar.dart';
 import '../ReusableWidgets/StockDisplayWidget.dart';
 import '../ReusableWidgets/StockExchangeWidget.dart';
 import 'MostBought.dart';
+import 'StockChart/StocksTabView.dart';
 import 'TopGainers.dart';
 
 class StocksPageView extends StatefulWidget {
@@ -252,6 +253,8 @@ class _StocksPageViewState extends State<StocksPageView> {
                             top: MediaQuery.of(context).size.height * 0.01),
                         child: StocksInNews(),
                       ),
+
+                      // StocksTabView(),
                     ],
                   ),
                 );

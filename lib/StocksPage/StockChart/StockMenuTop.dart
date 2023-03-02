@@ -62,6 +62,28 @@ class StockDetails extends StatelessWidget {
               ),
             ),
           ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: MediaQuery.of(context).size.width * 0.05,
+            ),
+            child: Row(
+              children: [
+                Text("-1.30(1.23)",
+                    style: GoogleFonts.roboto(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.red)),
+                SizedBox(
+                  width: 5,
+                ),
+                Text("1D",
+                    style: GoogleFonts.roboto(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey)),
+              ],
+            ),
+          )
         ],
       ),
     );
