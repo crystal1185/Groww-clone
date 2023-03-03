@@ -65,13 +65,13 @@ class StockDetailsNotifier with ChangeNotifier {
   List<StockDetailsModel> gainerStocks = [
     StockDetailsModel(
       BrandLogo: "assets/kotak.png",
-      BrandName: "Kotak ",
+      BrandName: "Kotak Mahindra Bank",
       Cost: "₹ 1,741.00",
       PriceAction: "+2.00 (3.78%)",
     ),
     StockDetailsModel(
       BrandLogo: "assets/paytm.png",
-      BrandName: "Paytm ",
+      BrandName: "Paytm - One97 Communications Ltd",
       Cost: "₹ 336.90",
       PriceAction: "+2.00 (3.78%)",
     ),
@@ -103,7 +103,7 @@ class StockDetailsNotifier with ChangeNotifier {
     ),
     StockDetailsModel(
       BrandLogo: "assets/Nykaa_Logo.png",
-      BrandName: "Nykaa ",
+      BrandName: "Nykaa -FSN E-Commerce Ventures Nykaa Ltd. ",
       Cost: "₹ 146.90",
       PriceAction: "+2.00 (0.61%)",
     ),

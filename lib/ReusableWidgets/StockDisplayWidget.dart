@@ -47,12 +47,15 @@ class StockDisplayCard extends StatelessWidget {
             padding: EdgeInsets.only(left: 15),
             child: Row(
               children: [
-                Text(
-                  stockmodal.BrandName.toString(),
-                  // provider.mostboughtcards[index].BrandName.toString(),
-                  style: GoogleFonts.roboto(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                Expanded(
+                  child: Text(
+                    stockmodal.BrandName.toString(),
+                    overflow: TextOverflow.ellipsis,
+                    // provider.mostboughtcards[index].BrandName.toString(),
+                    style: GoogleFonts.roboto(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 SizedBox(

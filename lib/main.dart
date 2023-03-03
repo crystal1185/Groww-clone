@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:groww/provider/ServerProvider.dart';
 import 'package:groww/provider/StockDetailsProvider.dart';
-import 'package:groww/test.dart';
 import 'package:groww/views/pages/CustomAuth.dart';
 import 'package:groww/views/pages/DashBoard/MainScreenDashboard.dart';
 import 'package:groww/views/pages/SettingsPage/ThemeSelect.dart';
@@ -40,11 +40,11 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           create: (context) => DemoModal(),
         ),
         ChangeNotifierProvider(
-          create: (context) => TestModal(),
-        ),
-        ChangeNotifierProvider(
           create: (context) => StockDetailsNotifier(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ServerProvider(),
+        )
       ],
       child: MaterialApp(
         title: 'Groww',
@@ -58,9 +58,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
 
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: tabbar(),
+          body: initialScreen(),
         ),
       ),
     );
   }
 }
+// initialScreen

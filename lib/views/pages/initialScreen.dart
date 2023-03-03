@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:groww/navigations/tabbar.dart';
 import 'package:rive/rive.dart';
 import 'package:groww/views/widgets/SocialButton.dart';
 import 'package:groww/views/widgets/SignInButton.dart';
@@ -178,6 +179,15 @@ class _initialScreenState extends State<initialScreen> {
 
             /// Email Button
             EmailButton(),
+            SizedBox(
+              height: 5,
+            ),
+            InkWell(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => tabbar(),
+              )),
+              child: Text("SKIP"),
+            ),
           ],
         ),
       ),

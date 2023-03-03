@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_animation_transition/animations/left_to_right_transition.dart';
+import 'package:page_animation_transition/animations/right_to_left_faded_transition.dart';
+import 'package:page_animation_transition/animations/right_to_left_transition.dart';
 import 'package:provider/provider.dart';
 import '../ReusableWidgets/StockDisplayWidget.dart';
 import '../provider/StockDetailsProvider.dart';
 import 'StockChart/StockCandlesUi.dart';
+import 'package:page_animation_transition/page_animation_transition.dart';
 
 /**
  * This is the most bought page .
@@ -57,11 +61,21 @@ class _MostBoughtWidgetState extends State<MostBoughtWidget> {
               ...List.generate(stockdetailsProvider.mostboughtcards.length,
                   (index) {
                 return InkWell(
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => StockDetailsUI(
-                        Stockdetialui:
-                            stockdetailsProvider.mostboughtcards[index]),
-                  )),
+                  // onTap: () => Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) => StockDetailsUI(
+                  //         Stockdetialui:
+                  //             stockdetailsProvider.mostboughtcards[index]),
+                  //   ),
+                  // ),
+                  onTap: () => Navigator.of(context).push(
+                    PageAnimationTransition(
+                      page: StockDetailsUI(
+                          Stockdetialui:
+                              stockdetailsProvider.mostboughtcards[index]),
+                      pageAnimationType: RightToLeftTransition(),
+                    ),
+                  ),
                   child: StockDisplayCard(
                     stockmodal: stockdetailsProvider.mostboughtcards[index],
                   ),

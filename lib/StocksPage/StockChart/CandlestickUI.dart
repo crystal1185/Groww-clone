@@ -3,9 +3,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'dart:ui' as ui;
+import '../../provider/ServerProvider.dart';
 import 'CandlestickModal.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -30,14 +32,13 @@ class _CandleStickDetailsState extends State<CandleStickDetails> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    final SocketIP = Provider.of<ServerProvider>(context, listen: false);
     _toggleVisibility = true;
-    connect();
+    connect(SocketIP.Socket_server_IP);
     _zoomPanBehavior = ZoomPanBehavior(
-        enableDoubleTapZooming: true,
-        enablePanning: true,
-        enablePinching: true,
-        enableSelectionZooming: true);
+      enablePinching: true,
+      enableSelectionZooming: true,
+    );
     _enableSolidCandle = false;
     _chartData = getData();
     _trackballBehavior = TrackballBehavior(
@@ -46,8 +47,8 @@ class _CandleStickDetailsState extends State<CandleStickDetails> {
     //connectStream();
   }
 
-  void connect() {
-    socket = IO.io('http://192.168.1.67:8080', <String, dynamic>{
+  void connect(String serverIp) {
+    socket = IO.io(serverIp, <String, dynamic>{
       "transports": ["websocket"],
       "autoConnect": false,
     });
@@ -58,7 +59,8 @@ class _CandleStickDetailsState extends State<CandleStickDetails> {
       socket!.on(
         'message',
         (data) {
-          print(data);
+          // data = await data;
+          print(data.toString());
         },
       );
     });
@@ -136,7 +138,8 @@ class _CandleStickDetailsState extends State<CandleStickDetails> {
 
   @override
   Widget build(BuildContext context) {
-    connect();
+    final SocketsIp = Provider.of<ServerProvider>(context);
+    // connect(SocketsIp.Socket_server_IP);
     return Container(
       height: MediaQuery.of(context).size.height * 0.4,
       // color: Colors.amber,
@@ -145,7 +148,8 @@ class _CandleStickDetailsState extends State<CandleStickDetails> {
           Directionality(
             textDirection: ui.TextDirection.rtl,
             child: SfCartesianChart(
-              // zoomPanBehavior: _zoomPanBehavior,
+              // loadMoreIndicatorBuilder: (context, direction) => ,
+              zoomPanBehavior: _zoomPanBehavior,
 
               trackballBehavior: _trackballBehavior,
               borderColor: Colors.black,
@@ -177,3 +181,19 @@ class _CandleStickDetailsState extends State<CandleStickDetails> {
     );
   }
 }
+// Widget getLoadMoreViewBuilder(
+//       BuildContext context, ChartSwipeDirection direction) {
+//        if (direction == ChartSwipeDirection.end) {
+//          return FutureBuilder<String>(
+//            future: _updateData(), /// Adding data by updateDataSource method
+//            builder:
+//             (BuildContext futureContext, AsyncSnapshot<String> snapShot) {
+//              return snapShot.connectionState != ConnectionState.done
+//// /               ? const CircularProgressIndicator()
+//                  : SizedBox.fromSize(size: Size.zero);
+//             },
+//          );
+//        } else {
+//          return SizedBox.fromSize(size: Size.zero);
+//        }
+//     }

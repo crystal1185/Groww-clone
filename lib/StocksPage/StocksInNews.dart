@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groww/StocksPage/StockChart/StockCandlesUi.dart';
+import 'package:page_animation_transition/animations/right_to_left_transition.dart';
+import 'package:page_animation_transition/page_animation_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../ReusableWidgets/StockDisplayWidget.dart';
@@ -28,10 +30,10 @@ class _StocksInNewsState extends State<StocksInNews> {
         itemCount: stocksInNewsProvider.stocksInNews.length,
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => StockDetailsUI(
-                  Stockdetialui: stocksInNewsProvider.mostboughtcards[index]),
-            )),
+            onTap: () => Navigator.of(context).push(PageAnimationTransition(
+                page: StockDetailsUI(
+                    Stockdetialui: stocksInNewsProvider.stocksInNews[index]),
+                pageAnimationType: RightToLeftTransition())),
             child: StockDisplayCard(
               stockmodal: stocksInNewsProvider.stocksInNews[index],
             ),

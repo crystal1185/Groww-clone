@@ -62,6 +62,7 @@ class _StocksPageViewState extends State<StocksPageView> {
             floating: true,
             snap: true,
             // pinned: true,
+            automaticallyImplyLeading: false,
             flexibleSpace: Container(
               child: Column(
                 children: [
