@@ -18,7 +18,7 @@ class _StocksTabViewState extends State<StocksTabView>
     with TickerProviderStateMixin {
   late TabController _tabController;
   int index = 0;
-  List<double> height = [1000, 500, 500, 400];
+  List<double> height = [2500, 500, 500, 400];
   @override
   void initState() {
     _tabController = TabController(length: 4, vsync: this);

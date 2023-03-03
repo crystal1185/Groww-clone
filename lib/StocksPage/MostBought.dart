@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import '../ReusableWidgets/StockDisplayWidget.dart';
-import 'package:groww/models/StockCardModel.dart';
+import '../provider/StockDetailsProvider.dart';
+import 'StockChart/StockCandlesUi.dart';
+
 /**
  * This is the most bought page .
  * 
@@ -16,34 +19,9 @@ class MostBoughtWidget extends StatefulWidget {
 }
 
 class _MostBoughtWidgetState extends State<MostBoughtWidget> {
-  List<StockDisplayCard> mostboughtcards = [
-    StockDisplayCard(
-      BrandLogo: "assets/zomato.png",
-      BrandName: "Zomato",
-      Cost: "₹ 54.95",
-      PriceAction: "+2.00 (3.78%)",
-    ),
-    StockDisplayCard(
-      BrandLogo: "assets/Ambuja_logo.png",
-      BrandName: "Ambuja Cements",
-      Cost: "₹ 336.90",
-      PriceAction: "+2.00 (3.78%)",
-    ),
-    StockDisplayCard(
-      BrandLogo: "assets/Yes_Bank_logo.png",
-      BrandName: "Yes Bank",
-      Cost: "₹ 16.40",
-      PriceAction: "+2.00 (0.61%)",
-    ),
-    StockDisplayCard(
-      BrandLogo: "assets/tatasteel.jpg",
-      BrandName: "Tata Steel",
-      Cost: "₹ 112.05",
-      PriceAction: "+0.90 (0.81%)",
-    ),
-  ];
   @override
   Widget build(BuildContext context) {
+    final stockdetailsProvider = Provider.of<StockDetailsNotifier>(context);
     return Column(
       children: [
         Padding(
@@ -75,7 +53,21 @@ class _MostBoughtWidgetState extends State<MostBoughtWidget> {
             childAspectRatio: 2.6 / 2.6,
             children: [
               /// to display the most bought
-              ...mostboughtcards.toList(growable: true),
+              // ...mostboughtcards.toList(growable: true),
+              ...List.generate(stockdetailsProvider.mostboughtcards.length,
+                  (index) {
+                return InkWell(
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => StockDetailsUI(
+                        Stockdetialui:
+                            stockdetailsProvider.mostboughtcards[index]),
+                  )),
+                  child: StockDisplayCard(
+                    stockmodal: stockdetailsProvider.mostboughtcards[index],
+                  ),
+                  //stockdetailsProvider.mostboughtcards[index]
+                );
+              })
             ],
           ),
         ),

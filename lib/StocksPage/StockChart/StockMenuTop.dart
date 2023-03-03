@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../../models/StockCardModel.dart';
+import '../../provider/StockDetailsProvider.dart';
 
 class StockDetails extends StatelessWidget {
-  const StockDetails({super.key});
+  StockDetailsModel stockDetailsModel;
+  StockDetails({required this.stockDetailsModel, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class StockDetails extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(
                 left: MediaQuery.of(context).size.width * 0.05,
-                top: MediaQuery.of(context).size.height * 0.08),
+                top: MediaQuery.of(context).size.height * 0.04),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -25,7 +30,7 @@ class StockDetails extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: Image.asset("assets/Yes_Bank_logo.png"),
+                  child: Image.asset(stockDetailsModel.BrandLogo.toString()),
                 ),
               ],
             ),
@@ -40,7 +45,7 @@ class StockDetails extends StatelessWidget {
               left: MediaQuery.of(context).size.width * 0.05,
             ),
             child: Text(
-              "Tata Steel",
+              stockDetailsModel.BrandName.toString(),
               style: GoogleFonts.roboto(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -55,7 +60,7 @@ class StockDetails extends StatelessWidget {
               left: MediaQuery.of(context).size.width * 0.05,
             ),
             child: Text(
-              "₹106.10",
+              stockDetailsModel.Cost.toString(),
               style: GoogleFonts.roboto(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -68,7 +73,7 @@ class StockDetails extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Text("-1.30(1.23)",
+                Text(stockDetailsModel.PriceAction.toString(),
                     style: GoogleFonts.roboto(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,

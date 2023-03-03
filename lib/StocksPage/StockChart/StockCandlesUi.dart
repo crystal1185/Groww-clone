@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:groww/provider/StockDetailsProvider.dart';
+import 'package:provider/provider.dart';
 
+import '../../models/StockCardModel.dart';
+import '../stocks.dart';
 import 'CandlestickUI.dart';
 import 'StockMenuTop.dart';
 import 'StocksTabView.dart';
 
 class StockDetailsUI extends StatefulWidget {
-  const StockDetailsUI({super.key});
+  StockDetailsModel Stockdetialui;
+  StockDetailsUI({required this.Stockdetialui, super.key});
 
   @override
   State<StockDetailsUI> createState() => _StockDetailsUIState();
@@ -14,6 +19,7 @@ class StockDetailsUI extends StatefulWidget {
 class _StockDetailsUIState extends State<StockDetailsUI> {
   @override
   Widget build(BuildContext context) {
+    final StockPageinfo = Provider.of<StockDetailsNotifier>(context);
     return Scaffold(
       body: ListView(
         shrinkWrap: true,
@@ -21,8 +27,30 @@ class _StockDetailsUIState extends State<StockDetailsUI> {
         children: [
           Column(
             children: [
+              Padding(
+                padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width * 0.04,
+                  top: MediaQuery.of(context).size.height * 0.01,
+                ),
+                child: InkWell(
+                  onTap: () => Navigator.pop(
+                    context,
+                    MaterialPageRoute(builder: (context) => StocksPageView()),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_back_rounded,
+                        size: 35,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
               /// Place the stock image
-              StockDetails(),
+              //todo:work here.
+              StockDetails(stockDetailsModel: widget.Stockdetialui),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
               ),

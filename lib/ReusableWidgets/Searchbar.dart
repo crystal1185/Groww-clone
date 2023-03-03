@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../views/SettingsPage.dart';
+
 class SearchbarCard extends StatelessWidget {
   const SearchbarCard({super.key});
 
@@ -11,9 +13,10 @@ class SearchbarCard extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.07,
       width: MediaQuery.of(context).size.width * 0.95,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: Colors.transparent,
-          border: Border.all(color: Colors.grey)),
+        borderRadius: BorderRadius.circular(100),
+        color: Colors.transparent,
+        border: Border.all(color: Colors.grey),
+      ),
       child: Row(
         children: [
           SizedBox(
@@ -25,17 +28,37 @@ class SearchbarCard extends StatelessWidget {
           SizedBox(
             width: 60,
           ),
-          Icon(Icons.search),
-          Text(
-            "Search Groww",
-            style: TextStyle(fontSize: 14),
+          InkWell(
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsPage(),
+                )),
+            child: Container(
+              child: Row(
+                children: const [
+                  Icon(Icons.search),
+                  Text(
+                    "Search Groww",
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ],
+              ),
+            ),
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.21,
           ),
-          CircleAvatar(
-            backgroundImage: NetworkImage(
-                "https://lh3.googleusercontent.com/a/AEdFTp6VGyU0raIKhjgnqOPZVLs1iZ_TYUsLRi0QbiuJ=s288-p-rw-no"),
+          InkWell(
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsPage(),
+                )),
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  "https://lh3.googleusercontent.com/a/AEdFTp6VGyU0raIKhjgnqOPZVLs1iZ_TYUsLRi0QbiuJ=s288-p-rw-no"),
+            ),
           ),
         ],
       ),

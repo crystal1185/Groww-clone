@@ -9,6 +9,7 @@ class AppTheme {
           color: Colors.black,
           systemOverlayStyle: SystemUiOverlayStyle.dark,
         ),
+
         brightness: Brightness.dark,
         canvasColor: Colors.black,
         textTheme: const TextTheme(

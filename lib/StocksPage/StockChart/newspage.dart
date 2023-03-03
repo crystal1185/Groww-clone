@@ -13,9 +13,7 @@ class _StockNewsPageState extends State<StockNewsPage> {
     return Container(
       child: Column(
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.2,
-          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.2),
           Text("Recent news are not available for this stock"),
         ],
       ),

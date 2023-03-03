@@ -3,7 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:groww/StocksPage/StockChart/OverviewTab/progressindicator.dart';
 
 import 'OverviewTab/ExpertsRatings.dart';
+import 'OverviewTab/Financials.dart';
+import 'OverviewTab/Fundamentals.dart';
 import 'OverviewTab/LowHigh.dart';
+import 'OverviewTab/Revenue.dart';
 import 'OverviewTab/stockdetial.dart';
 
 class OverviewTab extends StatefulWidget {
@@ -22,7 +25,7 @@ class _OverviewTabState extends State<OverviewTab> {
         Padding(
           padding: EdgeInsets.only(
               left: MediaQuery.of(context).size.width * 0.05,
-              top: MediaQuery.of(context).size.height * 0.03),
+              top: MediaQuery.of(context).size.height * 0.04),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -33,10 +36,10 @@ class _OverviewTabState extends State<OverviewTab> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
-              Icon(
+              const Icon(
                 Icons.info_rounded,
                 size: 16,
                 color: Colors.grey,
@@ -44,34 +47,45 @@ class _OverviewTabState extends State<OverviewTab> {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 50,
         ),
         ProgressSlider(),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         LowHigh(),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         StockPerfomanceDetails(),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        Divider(
+        const Divider(
           color: Color.fromARGB(255, 91, 91, 91),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         ExpertRatings(),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
-        Divider(
+        const Divider(
           color: Color.fromARGB(255, 91, 91, 91),
         ),
+
+        /// Fundamentals Data
+        FundamentalsUI(),
+        const SizedBox(
+          height: 30,
+        ),
+
+        const Divider(
+          color: Color.fromARGB(255, 91, 91, 91),
+        ),
+        FinancialsDetails(),
       ],
     );
   }

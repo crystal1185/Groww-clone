@@ -46,30 +46,17 @@ class _CandleStickDetailsState extends State<CandleStickDetails> {
     //connectStream();
   }
 
-  // String str = DateFormat("dd-MMM-yyyy")
-  //   .format(DateTime.parse("2023-02-20T13:11:21.739Z"));
-  void connectStream() {
-    final wsUrl = Uri.parse('ws://192.168.1.67:8080');
-    var channel = WebSocketChannel.connect(wsUrl);
-
-    channel.stream.listen((message) {
-      //channel.sink.add('connection');
-      // channel.sink.close(message);
-      print("--------$message---------");
-    });
-  }
-
   void connect() {
-    socket = IO.io('http://192.168.29.129:8080', <String, dynamic>{
+    socket = IO.io('http://192.168.1.67:8080', <String, dynamic>{
       "transports": ["websocket"],
       "autoConnect": false,
     });
     socket!.connect();
     socket!.onConnect((_) {
-      print("----connected to Naveen backend-----");
-      socket!.emit('msg', 'test i am mathi');
+      print("--------connected to Naveen backend----------");
+
       socket!.on(
-        'data',
+        'message',
         (data) {
           print(data);
         },
@@ -170,6 +157,7 @@ class _CandleStickDetailsState extends State<CandleStickDetails> {
                   // showIndicationForSameValues: false,
                   bearColor: Colors.red,
                   // enableSolidCandles: true,                  name: "NSE",
+
                   dataSource: _chartData,
                   xValueMapper: (Candlestickdata sales, _) => sales.X,
                   closeValueMapper: (Candlestickdata sales, _) => sales.close,
