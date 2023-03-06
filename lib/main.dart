@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:groww/provider/MutualFundsProvider.dart';
 import 'package:groww/provider/ServerProvider.dart';
 import 'package:groww/provider/StockDetailsProvider.dart';
 import 'package:groww/views/pages/CustomAuth.dart';
@@ -44,7 +45,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         ),
         ChangeNotifierProvider(
           create: (context) => ServerProvider(),
-        )
+        ),
+        ChangeNotifierProvider(create: (context) => MutualFundsProvider(),)
       ],
       child: MaterialApp(
         title: 'Groww',
