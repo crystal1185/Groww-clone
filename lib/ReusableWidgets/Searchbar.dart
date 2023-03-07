@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/ServerProvider.dart';
 import '../views/SettingsPage.dart';
 
 class SearchbarCard extends StatelessWidget {
@@ -8,6 +10,7 @@ class SearchbarCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userBackend = Provider.of<ServerProvider>(context);
     return Container(
       margin: EdgeInsets.only(top: 10),
       height: MediaQuery.of(context).size.height * 0.07,
@@ -56,8 +59,8 @@ class SearchbarCard extends StatelessWidget {
                   builder: (context) => SettingsPage(),
                 )),
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  "https://lh3.googleusercontent.com/a/AEdFTp6VGyU0raIKhjgnqOPZVLs1iZ_TYUsLRi0QbiuJ=s288-p-rw-no"),
+              backgroundImage:
+                  NetworkImage("${userBackend.userDetails!.data.profileImage}"),
             ),
           ),
         ],

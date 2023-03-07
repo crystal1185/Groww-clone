@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:groww/views/pages/stockspage.dart';
+
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
+import '../../navigations/tabbar.dart';
+import '../../provider/ServerProvider.dart';
 
 class SignInWithGoogle extends StatefulWidget {
   const SignInWithGoogle({super.key});
@@ -18,7 +21,7 @@ class SignInWithGoogle extends StatefulWidget {
 class _SignInWithGoogleState extends State<SignInWithGoogle> {
   Future<String?> googleOAuthSignin() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
-
+    final serverStatus = Provider.of<ServerProvider>(context, listen: false);
     final GoogleSignInAccount? googleSignInAccount =
         await googleSignIn.signIn();
     String? accessToken;
@@ -34,14 +37,17 @@ class _SignInWithGoogleState extends State<SignInWithGoogle> {
     }
     print(accessToken);
     print(idToken);
-    var res = await http.post(Uri.parse("http://192.168.1.24:3000/createUser"),
+    var res = await http.post(Uri.parse("${serverStatus.Server_IP}/createUser"),
         body: jsonEncode({"access_token": accessToken, "id_token": idToken}),
         headers: {
           "accept": "application/json",
           "content-type": "application/json"
         });
     print(res.body);
-    if (res.statusCode == 200) {}
+    if (res.statusCode == 200) {
+      final storeDetail = Provider.of<ServerProvider>(context, listen: false);
+      storeDetail.oauthDetails(res.body);
+    }
     return null;
   }
 
@@ -55,7 +61,7 @@ class _SignInWithGoogleState extends State<SignInWithGoogle> {
         /// Deserialize
         /// Life cycle destroy.
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => StocksUI()));
+            context, MaterialPageRoute(builder: (context) => tabbar()));
       }),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),

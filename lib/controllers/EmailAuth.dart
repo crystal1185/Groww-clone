@@ -8,12 +8,13 @@ class TextFormFieldCreator extends StatelessWidget {
   String CustomhintText;
   TextEditingController controller;
   TextInputType CustomKeyboard;
-  TextFormFieldCreator(
-      {super.key,
-      required this.Customlabel,
-      required this.CustomhintText,
-      required this.CustomKeyboard,
-      required this.controller});
+  TextFormFieldCreator({
+    super.key,
+    required this.Customlabel,
+    required this.CustomhintText,
+    required this.CustomKeyboard,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +40,12 @@ class TextFormFieldCreator extends StatelessWidget {
 class PasswordFormFieldCreator extends StatelessWidget {
   String CustomPasswordLabel;
   String CustomHintext;
-  PasswordFormFieldCreator(
-      {required this.CustomPasswordLabel, required this.CustomHintext});
+  TextEditingController controller;
+  PasswordFormFieldCreator({
+    required this.CustomPasswordLabel,
+    required this.CustomHintext,
+    required this.controller,
+  });
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -63,8 +68,12 @@ class PasswordFormFieldCreator extends StatelessWidget {
 class OtpFormFieldCreator extends StatelessWidget {
   String? Customlabel;
   String? CustomhintText;
-
-  OtpFormFieldCreator({super.key, this.Customlabel, this.CustomhintText});
+  TextEditingController controller;
+  OtpFormFieldCreator(
+      {super.key,
+      this.Customlabel,
+      this.CustomhintText,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {

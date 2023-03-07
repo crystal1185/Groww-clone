@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:groww/controllers/EmailAuth.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+
+import '../../provider/ServerProvider.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -9,8 +13,10 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final ForgotPasswordProvider = Provider.of<ServerProvider>(context);
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(color: Colors.black),
@@ -26,27 +32,28 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.06,
           ),
-
           PasswordFormFieldCreator(
-              CustomPasswordLabel: "New Password",
-              CustomHintext: "8-32 characters"),
+            CustomPasswordLabel: "New Password",
+            CustomHintext: "8-32 characters",
+            controller: passwordController,
+          ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.04,
           ),
           PasswordFormFieldCreator(
-              CustomPasswordLabel: "Confirm New Password",
-              CustomHintext: "8-32 characters"),
-          // Container(
-          //   color: Colors.red,
-          //   height: MediaQuery.of(context).size.height * 0.1,
-          // ),
-
+            CustomPasswordLabel: "Confirm New Password",
+            CustomHintext: "8-32 characters",
+            controller: passwordController,
+          ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
           ),
           CustomButton(
             CustomText: "Send OTP",
-            onTap: () {},
+            onTap: () {
+              var ResetPasswordResponse = http.post(Uri.parse(
+                  "${ForgotPasswordProvider.Server_IP}/api/idktherouter"));
+            },
           ),
         ],
       ),
