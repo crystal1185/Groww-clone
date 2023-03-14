@@ -176,7 +176,9 @@ class _CustomAuthenticationState extends State<CustomAuthentication> {
                 debugPrint(otpCheck);
                 // debugPrint(otpResponse.body);
                 // to check the response code of the otp:
-                if (otpResponse.statusCode == 200) {}
+                if (otpResponse.statusCode == 200) {
+
+                }
 
                 // Navigate to another page -> set the password page.
               }
@@ -198,7 +200,8 @@ class _CustomAuthenticationState extends State<CustomAuthentication> {
                 // to check the response code for the password checking.
                 if (passwordResponse.statusCode == 200) {
                   debugPrint(passwordResponse.body);
-
+                     
+                
                   // if the passoword is satisfied , navigate to the Stocks Page UI
                 }
               }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:groww/provider/MutualFundsProvider.dart';
@@ -16,12 +18,19 @@ import 'Demo.dart';
 import 'DemoModal.dart';
 import 'package:groww/provider/ThemeProvider.dart';
 
+import 'iosBuild/ios.dart';
 import 'navigations/tabbar.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MainHomeScreen());
+  
+  if (Platform.isAndroid) {
+    runApp(MainHomeScreen());
+  }
+  if (Platform.isIOS) {
+    runApp(Testing());
+  }
 }
 
 class MainHomeScreen extends StatefulWidget {
@@ -46,7 +55,9 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         ChangeNotifierProvider(
           create: (context) => ServerProvider(),
         ),
-        ChangeNotifierProvider(create: (context) => MutualFundsProvider(),)
+        ChangeNotifierProvider(
+          create: (context) => MutualFundsProvider(),
+        )
       ],
       child: MaterialApp(
         title: 'Groww',
